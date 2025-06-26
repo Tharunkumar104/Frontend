@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './PageStyles.css';
 
 function Home() {
+    const [message, setMessage] = useState('');
+
+    useEffect(() => {
+        fetch('/api/users/test')
+
+            .then(res => res.json())
+            .then(data => setMessage(data.message))
+            .catch(err => console.error("Error fetching from backend:", err));
+    }, []);
+
     return (
         <div className="page">
             <div className="home-container">
@@ -9,6 +19,14 @@ function Home() {
                 <p className="home-subtitle">
                     Track your coding journey and sharpen your skills across competitive platforms.
                 </p>
+
+                {/* ✅ Backend Connection Message */}
+                {message && (
+                    <div className="home-section">
+                        <h2>🔗 Backend Connection:</h2>
+                        <p>{message}</p>
+                    </div>
+                )}
 
                 <div className="home-section">
                     <h2>📈 Track Your Progress</h2>

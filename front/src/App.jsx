@@ -27,9 +27,6 @@ function App() {
         <Route path="/skills" element={<Skills />} />
         <Route path="/progress" element={<Progress />} />
         <Route path="/questions/:skill" element={<QuestionSection />} />
-
-
-
       </Routes>
     </div>
   );
