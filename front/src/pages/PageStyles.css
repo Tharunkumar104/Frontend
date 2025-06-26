@@ -1,0 +1,136 @@
+/* Base Setup */
+html,
+body,
+#root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Page Wrapper */
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 20px 100px;
+    min-height: 100vh;
+    background-image: url('../assets/profile.jpg');
+    /* Update if needed */
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position: center top;
+    font-family: 'Courier New', Courier, monospace;
+    color: white;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #1a1a2e;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 80px;
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    padding: 0 20px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    margin: 0 15px;
+    font-size: 20px;
+}
+
+.navbar a:hover {
+    color: #00f5d4;
+}
+
+/* Question Card */
+.question-card {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.question-card pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Option Styles */
+.question-card label {
+    display: block;
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid #888;
+    border-radius: 6px;
+    padding: 10px 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.question-card label:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.question-card input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Result Styles */
+.correct {
+    color: #00ff00;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.wrong {
+    color: #ff4d4d;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Submit Button */
+.submit-button {
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #ffcc00;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    margin-top: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #e6b800;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    .navbar a {
+        margin: 10px 0;
+    }
+
+    .question-card {
+        width: 95%;
+        padding: 20px;
+    }
+}

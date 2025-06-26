@@ -1,0 +1,142 @@
+html,
+body,
+#root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.form-container {
+    background: rgba(0, 0, 0, 0.9);
+    padding: 50px;
+    border-radius: 18px;
+    box-shadow: 0 0 30px rgba(255, 204, 0, 0.4);
+    width: 100%;
+    max-width: 800px;
+    color: white;
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 204, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+.profile-title {
+    text-align: center;
+    margin-bottom: 28px;
+    font-size: 28px;
+    color: #ffcc00;
+    letter-spacing: 1px;
+}
+
+.profile-form,
+.profile-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Form Fields */
+.profile-form label {
+    margin-bottom: 14px;
+    font-weight: bold;
+}
+
+.profile-form input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    background-color: #444;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 14px;
+}
+
+.profile-form input::placeholder {
+    color: #bbb;
+}
+
+/* Buttons */
+.profile-form button,
+.profile-display button {
+    margin-top: 28px;
+    padding: 14px 24px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    color: black;
+    align-self: center;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.profile-form button:hover,
+.profile-display button:hover {
+    background-color: #e6b800;
+}
+
+/* Display Mode - Two Columns */
+.profile-display {
+    gap: 16px;
+}
+
+.profile-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    padding: 4px 0;
+    background: transparent;
+}
+
+.profile-row span:first-child {
+    font-weight: 600;
+    color: #ddd;
+    width: 35%;
+    text-align: left;
+}
+
+.profile-row span:last-child {
+    color: #ffcc00;
+    width: 65%;
+    text-align: right;
+    word-break: break-word;
+}
+
+.profile-row a {
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+.profile-row a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 20px;
+    }
+
+    .profile-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .profile-row span {
+        width: 100% !important;
+        text-align: left !important;
+    }
+}

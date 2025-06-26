@@ -1,0 +1,32 @@
+.progress-table {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.progress-table th,
+.progress-table td {
+    padding: 16px 20px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.progress-table th {
+    background: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.progress-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.progress-container {
+    font-family: Arial, sans-serif;
+}

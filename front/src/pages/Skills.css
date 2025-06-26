@@ -1,0 +1,46 @@
+.skill-container {
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.skill-box {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    padding: 30px 40px;
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.skill-box h2 {
+    margin-bottom: 20px;
+}
+
+.skill-box select,
+.skill-box button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    font-size: 16px;
+    border-radius: 6px;
+}
+
+.skill-box button {
+    background-color: #000;
+    color: white;
+    cursor: pointer;
+}
+
+.skill-box button:hover {
+    background-color: #333;
+}
