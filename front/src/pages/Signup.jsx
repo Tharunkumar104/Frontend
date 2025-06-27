@@ -17,12 +17,11 @@ function Signup() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post('https://backend-ekze.onrender.com/api/users/signup', formData);
+            const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/signup`, formData);
             alert('Signup successful!');
         } catch (err) {
             console.error(err);
-            const message = err.response?.data?.error || 'Signup failed';
-            alert(message);
+            alert(err.response?.data?.error || 'Signup failed');
         }
     };
 
