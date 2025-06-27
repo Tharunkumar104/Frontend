@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './Form.css';
 import bg from '../assets/profile.jpg';
 
@@ -18,23 +19,14 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch('/api/users/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
-            });
+            const res = await axios.post('https://backend-ekze.onrender.com/api/users/login', formData);
 
-            const data = await res.json();
-
-            if (res.ok) {
-                alert('Login successful!');
-                navigate('/profile'); // 🔁 Redirect after login
-            } else {
-                alert(data.error || 'Login failed');
-            }
+            alert('Login successful!');
+            navigate('/profile');
         } catch (err) {
             console.error(err);
-            alert('Login error');
+            const message = err.response?.data?.error || 'Login failed';
+            alert(message);
         }
     };
 

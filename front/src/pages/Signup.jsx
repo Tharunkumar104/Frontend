@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './Form.css';
 import bg from '../assets/profile.jpg';
 
@@ -16,22 +17,12 @@ function Signup() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch('/api/users', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
-            });
-
-            const data = await res.json();
-
-            if (res.ok) {
-                alert('Signup successful!');
-            } else {
-                alert(data.error || 'Signup failed');
-            }
+            const res = await axios.post('https://backend-ekze.onrender.com/api/users/signup', formData);
+            alert('Signup successful!');
         } catch (err) {
             console.error(err);
-            alert('Signup error');
+            const message = err.response?.data?.error || 'Signup failed';
+            alert(message);
         }
     };
 
@@ -67,4 +58,5 @@ function Signup() {
         </div>
     );
 }
+
 export default Signup;

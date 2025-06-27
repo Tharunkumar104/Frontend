@@ -3,14 +3,14 @@ import './PageStyles.css';
 
 function Home() {
     const [message, setMessage] = useState('');
-
     useEffect(() => {
-        fetch('/api/users/test')
-
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/api/users/test`)
             .then(res => res.json())
             .then(data => setMessage(data.message))
             .catch(err => console.error("Error fetching from backend:", err));
     }, []);
+
+
 
     return (
         <div className="page">
