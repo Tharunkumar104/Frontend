@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Form.css';
 import bg from '../assets/profile.jpg';
 
-function Signup() {
+function Login() {
     const [formData, setFormData] = useState({
-        name: '',
         email: '',
-        password: '',
+        password: ''
     });
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,26 +19,24 @@ function Signup() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/signup`, formData);
-            alert('Signup successful!');
+            const res = await axios.post(
+                `${import.meta.env.VITE_API_BASE_URL}/login`,
+                formData
+            );
+
+            alert('Login successful!');
+            navigate('/profile');
         } catch (err) {
-            console.error(err);
-            alert(err.response?.data?.error || 'Signup failed');
+            console.error('Login Error:', err);
+            alert(err.response?.data?.error || 'Login failed');
         }
     };
 
     return (
         <div className="form-bg" style={{ backgroundImage: `url(${bg})` }}>
             <div className="form-glass">
-                <h2>Sign Up</h2>
+                <h2>Login</h2>
                 <form onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Name"
-                        required
-                        onChange={handleChange}
-                    />
                     <input
                         type="email"
                         name="email"
@@ -51,11 +51,11 @@ function Signup() {
                         required
                         onChange={handleChange}
                     />
-                    <button type="submit">Sign Up</button>
+                    <button type="submit">Log In</button>
                 </form>
             </div>
         </div>
     );
 }
 
-export default Signup;
+export default Login;
