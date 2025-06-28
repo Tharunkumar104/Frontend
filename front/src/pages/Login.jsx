@@ -19,12 +19,15 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/login`, formData);
+            const res = await axios.post(
+                `${import.meta.env.VITE_API_BASE_URL}/login`,
+                formData
+            );
 
             alert('Login successful!');
             navigate('/profile');
         } catch (err) {
-            console.error(err);
+            console.error('Login Error:', err);
             alert(err.response?.data?.error || 'Login failed');
         }
     };
