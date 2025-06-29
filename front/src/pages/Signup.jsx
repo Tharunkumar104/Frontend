@@ -20,7 +20,7 @@ function Signup() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // Make sure your VITE_API_BASE_URL is: https://backend-ekze.onrender.com/api/users
+            // Make sure your VITE_API_BASE_URL is set correctly in your .env
             const res = await axios.post(
                 `${import.meta.env.VITE_API_BASE_URL}/signup`,
                 formData
@@ -29,12 +29,23 @@ function Signup() {
             alert('Signup successful! Please log in.');
             navigate('/login');
         } catch (err) {
+            // Enhanced error handling for all possible failure cases
             console.error('Signup Error:', err);
-            alert(
-                err.response?.data?.error ||
-                err.response?.data?.message ||
-                'Signup failed'
-            );
+
+            if (err.response) {
+                // Server responded with a status other than 2xx
+                alert(
+                    err.response.data?.error ||
+                    err.response.data?.message ||
+                    `Signup failed: ${err.response.statusText}`
+                );
+            } else if (err.request) {
+                // Request was made but no response received
+                alert('No response from server. Please try again later.');
+            } else {
+                // Something else happened
+                alert('An unexpected error occurred. Please try again.');
+            }
         }
     };
 
