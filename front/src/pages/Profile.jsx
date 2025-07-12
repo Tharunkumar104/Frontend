@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './Profile.css';
 import bg from '../assets/profile.jpg'; // Update path if needed
 
-function Profile({ userId }) {
+function Profile({ userId: propUserId }) {
+    // Try to get userId from props or localStorage
+    const userId = propUserId || localStorage.getItem('userId');
+
     const [userData, setUserData] = useState({
         name: '',
         email: '',
@@ -21,13 +24,22 @@ function Profile({ userId }) {
 
     // Fetch user name and email from backend
     useEffect(() => {
-        // Replace with your actual API endpoint and userId logic
+        if (!userId) {
+            setError('No user ID found. Please log in again.');
+            setLoading(false);
+            return;
+        }
+
+        console.log('Fetching profile for userId:', userId); // Debug: log userId
+
         fetch(`/api/profile/${userId}`)
             .then(res => {
+                console.log('Fetch response status:', res.status); // Debug: log status
                 if (!res.ok) throw new Error('Failed to fetch profile');
                 return res.json();
             })
             .then(data => {
+                console.log('Fetched profile data:', data); // Debug: log data
                 setUserData(prev => ({
                     ...prev,
                     name: data.name || '',
@@ -35,7 +47,8 @@ function Profile({ userId }) {
                 }));
                 setLoading(false);
             })
-            .catch(() => {
+            .catch((err) => {
+                console.error('Fetch error:', err); // Debug: log error
                 setError('Could not load profile.');
                 setLoading(false);
             });
