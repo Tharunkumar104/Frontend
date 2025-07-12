@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Profile.css';
 import bg from '../assets/profile.jpg'; // Update path if needed
 
-function Profile() {
+function Profile({ userId }) {
     const [userData, setUserData] = useState({
         name: '',
         email: '',
@@ -16,6 +16,30 @@ function Profile() {
     });
 
     const [isEditing, setIsEditing] = useState(true);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
+
+    // Fetch user name and email from backend
+    useEffect(() => {
+        // Replace with your actual API endpoint and userId logic
+        fetch(`/api/profile/${userId}`)
+            .then(res => {
+                if (!res.ok) throw new Error('Failed to fetch profile');
+                return res.json();
+            })
+            .then(data => {
+                setUserData(prev => ({
+                    ...prev,
+                    name: data.name || '',
+                    email: data.email || ''
+                }));
+                setLoading(false);
+            })
+            .catch(() => {
+                setError('Could not load profile.');
+                setLoading(false);
+            });
+    }, [userId]);
 
     const handleChange = (e) => {
         setUserData({ ...userData, [e.target.name]: e.target.value });
@@ -24,11 +48,34 @@ function Profile() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setIsEditing(false);
+        // Optionally, send updated data to backend here
     };
 
     const handleEdit = () => {
         setIsEditing(true);
     };
+
+    if (loading) {
+        return (
+            <div className="page" style={{ backgroundImage: `url(${bg})` }}>
+                <div className="form-container">
+                    <h1 className="profile-title">Profile</h1>
+                    <div>Loading profile...</div>
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="page" style={{ backgroundImage: `url(${bg})` }}>
+                <div className="form-container">
+                    <h1 className="profile-title">Profile</h1>
+                    <div style={{ color: 'red' }}>{error}</div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="page" style={{ backgroundImage: `url(${bg})` }}>
