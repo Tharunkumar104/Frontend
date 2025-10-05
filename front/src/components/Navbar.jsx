@@ -11,6 +11,7 @@ function Navbar() {
                 <Link to="/skills">Skills</Link>
                 <Link to="/progress">Progress</Link>
                 <Link to="/problems">Problems</Link>
+                <Link to="/notes">NOTES</Link>
                 <Link to="/contest">Contact</Link>
                 <Link to="/login">Login</Link>
                 <Link to="/signup">Sign up</Link>

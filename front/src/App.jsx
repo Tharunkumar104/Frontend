@@ -10,6 +10,7 @@ import Profile from './pages/Profile';
 import Skills from './pages/Skills';
 import Progress from "./pages/Progress";
 import QuestionSection from './pages/QuestionSection';
+import Notes from './pages/Notes';
 
 
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/skills" element={<Skills />} />
         <Route path="/progress" element={<Progress />} />
         <Route path="/questions/:skill" element={<QuestionSection />} />
+        <Route path="/notes" element={<Notes />} />
       </Routes>
     </div>
   );
